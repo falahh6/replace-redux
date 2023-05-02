@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ProductContext } from "../../contextAPI/products-context";
+import useStore from "../../store-hook/store";
 
 import Card from "../UI/Card";
 import "./ProductItem.css";
@@ -7,10 +8,10 @@ import "./ProductItem.css";
 
 const ProductItem = (props) => {
   // const productList = useContext(ProductContext).products;
-  const toggleFav = useContext(ProductContext).toggleFav;
+  const dispatch = useStore()[1];
+  // const toggleFav = useContext(ProductContext).toggleFav;
   const toggleFavHandler = () => {
-    toggleFav(props.id);
-    console.log(`added ${props.id} to fave`);
+    dispatch("TOGGLE_FAV", props.id);
   };
 
   return (
