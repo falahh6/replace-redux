@@ -12,7 +12,11 @@ const useStore = () => {
     globalState = { ...globalState, ...newState };
 
     for (const listener of listeners) {
-      listener(globalState);
+      if (typeof listener === "function") {
+        listener(globalState);
+      } else {
+        console.log("not a function");
+      }
     }
   };
 
